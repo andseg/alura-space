@@ -5,9 +5,17 @@ from django.db import models
 
 class Fotografia(models.Model):
     """docstring for Fotografia."""
+    
+    OPCOES_CATEGORIA = [
+        ('NEBULOSA', 'Nebulosa'),
+        ('ESTRELA', 'Estrela'),
+        ('GALÁXIA', 'Galáxia'),
+        ('PLANETA', 'Planeta')
+    ]
     nome = models.CharField(max_length=100, null=False, blank=False)
-    legenda = models.CharField(max_length=150, null=False, blank=False)
-    descricao = models.TextField(null=False, blank=False)
+    legenda = models.CharField(max_length=150, null=True, blank=True)
+    categoria = models.CharField(max_length=100, default='', choices=OPCOES_CATEGORIA)
+    descricao = models.TextField(null=True, blank=True)
     foto = models.CharField(max_length=100, null=False, blank=False)
     
     def __str__(self):
